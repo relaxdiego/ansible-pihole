@@ -11,6 +11,21 @@
     path: "/home/{{ ansible_user }}/pihole/pihole"
     state: directory
 
+- name: Ensure /home/{{ ansible_user }}/pihole/var/log/lighttpd directory
+  file:
+    path: "/home/{{ ansible_user }}/pihole/var/log/lighttpd"
+    state: directory
+    mode: 0777
+
+- name: Ensure /home/{{ ansible_user }}/pihole/var/log/lighttpd log files
+  file:
+    path: "/home/{{ ansible_user }}/pihole/var/log/lighttpd/{{item}}.log"
+    state: touch
+    mode: 0766
+  with_items:
+    - error
+    - access
+
 - name: Create FTL config
   blockinfile:
     path: "/home/{{ ansible_user }}/pihole/pihole/pihole-FTL.conf"
@@ -46,8 +61,10 @@
       - "{{ static_dns }}"
     network_mode: host
     volumes:
-      - "/home/{{ ansible_user }}/pihole/pihole/:/etc/pihole/"
-      - "/home/{{ ansible_user }}/pihole/dnsmasq.d/:/etc/dnsmasq.d/"
+      - "/home/{{ ansible_user }}/pihole/etc/pihole/:/etc/pihole/"
+      - "/home/{{ ansible_user }}/pihole/etc/dnsmasq.d/:/etc/dnsmasq.d/"
+      - "/home/{{ ansible_user }}/pihole/var/log:/var/log"
+      - "/home/{{ ansible_user }}/pihole/var/log/lighttpd:/var/log/lighttpd"
     log_driver: json-file
     log_options:
       max-size: "10m"
