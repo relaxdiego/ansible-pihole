@@ -1,27 +1,27 @@
 all:
   hosts:
-    pihole-1:
-      ansible_host: 192.168.178.45
+    pi-003:
+      ansible_host: "{{ vault_pi_003_ip }}"
       priority: 101
-    pihole-2:
-      ansible_host: 192.168.178.46
+    pi-004:
+      ansible_host: "{{ vault_pi_004_ip }}"
       priority: 100
   vars:
     ansible_user: pi
     ansible_password: raspberry # only used on first run
     ansible_python_interpreter: /usr/bin/python3
-    github_user_for_ssh_key: shaderecker
-    timezone: "Europe/Berlin"
+    github_user_for_ssh_key: relaxdiego
+    timezone: "Asia/Manila"
     static_dns: "1.1.1.1"
     docker_release: buster
     pihole_image: "pihole/pihole:v5.8.1-armhf-buster"
     pihole_ftl_max_db_days: "180"
-    pihole_webpassword: Intranet # example value, change it and better use ansible-vault
+    pihole_webpassword: "{{ vault_pihole_webpassword }}"
     pihole_dns: "1.1.1.1;2606:4700:4700::1111"
     pihole_rev_server: "true"
-    pihole_rev_server_domain: "fritz.box"
-    pihole_rev_server_target: "192.168.178.1"
-    pihole_rev_server_cidr: "192.168.178.0/24"
-    pihole_vip_ipv4: "192.168.178.10/24"
-    pihole_vip_ipv6: "fd00::10/64"
+    pihole_rev_server_domain: "lan"
+    pihole_rev_server_target: "{{ vault_pihole_rev_server_target }}"
+    pihole_rev_server_cidr: "{{ vault_pihole_rev_server_cidr }}"
+    pihole_vip_ipv4: "{{ vault_pihole_vip_ipv4 }}"
+    pihole_vip_ipv6: "{{ vault_pihole_vip_ipv6 }}"
     sync_target: "{{ pihole_vip_ipv4.split('/')[0] }}"
