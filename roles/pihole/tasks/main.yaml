@@ -45,6 +45,7 @@
     name: pihole
     image: "{{ pihole_image }}"
     restart_policy: unless-stopped
+    container_default_behavior: compatibility
     env:
       TZ: "{{ timezone }}"
       ServerIP: "0.0.0.0"
