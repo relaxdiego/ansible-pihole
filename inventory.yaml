@@ -17,7 +17,7 @@ all:
     pihole_image: "pihole/pihole:v5.8.1-armhf-buster"
     pihole_ftl_max_db_days: "180"
     pihole_webpassword: "{{ vault_pihole_webpassword }}"
-    pihole_dns: "1.1.1.1;2606:4700:4700::1111"
+    pihole_dns: "1.1.1.3;1.0.0.3"
     pihole_rev_server: "true"
     pihole_rev_server_domain: "lan"
     pihole_rev_server_target: "{{ vault_pihole_rev_server_target }}"
