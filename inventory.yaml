@@ -22,6 +22,7 @@ all:
     pihole_rev_server_domain: "lan"
     pihole_rev_server_target: "{{ vault_pihole_rev_server_target }}"
     pihole_rev_server_cidr: "{{ vault_pihole_rev_server_cidr }}"
+    pihole_dnssec: "true"
     pihole_vip_ipv4: "{{ vault_pihole_vip_ipv4 }}"
     pihole_vip_ipv6: "{{ vault_pihole_vip_ipv6 }}"
     sync_target: "{{ pihole_vip_ipv4.split('/')[0] }}"

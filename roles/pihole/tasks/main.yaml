@@ -52,6 +52,7 @@
       ServerIPv6: "::"
       WEBPASSWORD: "{{ pihole_webpassword }}"
       PIHOLE_DNS_: "{{ pihole_dns }}"
+      DNSSEC: "{{ pihole_dnssec }}"
       DNSMASQ_LISTENING: "local"
       REV_SERVER: "{{ pihole_rev_server }}"
       REV_SERVER_DOMAIN: "{{ pihole_rev_server_domain }}"
